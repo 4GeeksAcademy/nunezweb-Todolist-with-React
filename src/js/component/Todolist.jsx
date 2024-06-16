@@ -20,9 +20,20 @@ const ToDoList = () => {
           class="form-control todo-input"
           onChange={(e) => setInputValue(e.target.value)}
           value={inputValue}
-          onKeyUp={(e) =>
-            e.key === "Enter" ? setToDos(toDos.concat(inputValue)) : null
-          }
+
+         //  onKeyUp={(e) =>
+         //    e.key === "Enter" ? setToDos(toDos.concat(inputValue)) : null
+         //  }
+
+         onKeyUp={(e) => {
+            if (e.key === 'Enter' && inputValue.trim() !== '') {
+              setToDos((prevToDos) => {
+                return prevToDos.concat(inputValue); 
+              });
+              setInputValue('');
+            }
+          }}
+          
           placeholder="✍️ What do you need to do?"
         />
       </li>
