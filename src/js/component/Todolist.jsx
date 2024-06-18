@@ -9,15 +9,15 @@ const ToDoList = () => {
   const [inputValue, setInputValue] = useState("");
   const [toDos, setToDos] = useState([]);
   return (
-    <div class="container todo-container">
+    <div className="container todo-container">
      <div className="centerIcon"><Icono /></div> 
-    <div class="task-count"> {toDos.length} Task(s)</div>
-    <h1 class="todo-header">My To Do List</h1>
-    <ul class="list-group">
-      <li class="list-group-item">
+    <div className="task-count"> {toDos.length} Task(s)</div>
+    <h1 className="todo-header">My To Do List</h1>
+    <ul className="list-group">
+      <li className="list-group-item">
         <input
           type="text"
-          class="form-control todo-input"
+          className="form-control todo-input"
           onChange={(e) => setInputValue(e.target.value)}
           value={inputValue}
 
@@ -38,10 +38,10 @@ const ToDoList = () => {
         />
       </li>
       {toDos.map((items, index) => (
-        <li class="list-group-item todo-item">
+        <li className="list-group-item todo-item">
           {items}{" "}
           <i
-            class="fas fa-trash-alt"
+            className="fas fa-trash-alt"
             onClick={() =>
               setToDos(
                 toDos.filter((t, currentIndex) => index !== currentIndex)
