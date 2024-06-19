@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Icono from './Icono'
+import Icono from "./Icono";
 
 //Add into array -> concat
 // Delete from arry -> filter
@@ -8,50 +8,58 @@ import Icono from './Icono'
 const ToDoList = () => {
   const [inputValue, setInputValue] = useState("");
   const [toDos, setToDos] = useState([]);
+  const handleClearAll = () => {
+    setToDos([]);
+  };
   return (
     <div className="container todo-container">
-     <div className="centerIcon"><Icono /></div> 
-    <div className="task-count"> {toDos.length} Task(s)</div>
-    <h1 className="todo-header">My To Do List</h1>
-    <ul className="list-group">
-      <li className="list-group-item">
-        <input
-          type="text"
-          className="form-control todo-input"
-          onChange={(e) => setInputValue(e.target.value)}
-          value={inputValue}
-
-         //  onKeyUp={(e) =>
-         //    e.key === "Enter" ? setToDos(toDos.concat(inputValue)) : null
-         //  }
-
-         onKeyUp={(e) => {
-            if (e.key === 'Enter' && inputValue.trim() !== '') {
-              setToDos((prevToDos) => {
-                return prevToDos.concat(inputValue); 
-              });
-              setInputValue('');
-            }
-          }}
-          
-          placeholder="✍️ What do you need to do?"
-        />
-      </li>
-      {toDos.map((items, index) => (
-        <li className="list-group-item todo-item">
-          {items}{" "}
-          <i
-            className="fas fa-trash-alt"
-            onClick={() =>
-              setToDos(
-                toDos.filter((t, currentIndex) => index !== currentIndex)
-              )
-            }
-          ></i>
+      <div className="row">
+        <div className="col">
+          {toDos.length > 0 && (
+            <button className="btn btn-danger mt-3" onClick={handleClearAll}>
+              Delete All
+            </button>
+          )}
+        </div>
+        <div className="col centerIcon">
+          <Icono />
+        </div>
+        <div className="col task-count"> {toDos.length} Task(s)</div>
+      </div>
+      <h1 className="todo-header">My To Do List</h1>
+      <ul className="list-group">
+        <li className="list-group-item">
+          <input
+            type="text"
+            className="form-control todo-input"
+            onChange={(e) => setInputValue(e.target.value)}
+            value={inputValue}
+            onKeyUp={(e) => {
+              if (e.key === "Enter" && inputValue.trim() !== "") {
+                setToDos((prevToDos) => {
+                  return prevToDos.concat(inputValue);
+                });
+                setInputValue("");
+              }
+            }}
+            placeholder="✍️ What do you need to do?"
+          />
         </li>
-      ))}
-    </ul>
-  </div>
+        {toDos.map((items, index) => (
+          <li className="list-group-item todo-item">
+            {items}{" "}
+            <i
+              className="fas fa-trash-alt"
+              onClick={() =>
+                setToDos(
+                  toDos.filter((t, currentIndex) => index !== currentIndex)
+                )
+              }
+            ></i>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
