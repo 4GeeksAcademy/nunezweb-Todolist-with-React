@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Icono from "./Icono";
 
-//Add into array -> concat
-// Delete from arry -> filter
+// Add into array -> concat
+// Delete from array -> filter
 // Update -> map
 
 const ToDoList = () => {
@@ -46,10 +46,10 @@ const ToDoList = () => {
           />
         </li>
         {toDos.map((items, index) => (
-          <li className="list-group-item todo-item">
-            {items}{" "}
+          <li className="list-group-item todo-item" key={index}>
+            {items}
             <i
-              className="fas fa-trash-alt"
+              className="fas fa-trash-alt icon-hide"
               onClick={() =>
                 setToDos(
                   toDos.filter((t, currentIndex) => index !== currentIndex)
